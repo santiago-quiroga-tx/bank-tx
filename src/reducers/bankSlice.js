@@ -13,10 +13,16 @@ export const bankSlice = createSlice({
     withdraw: (state, action) => {
       state.totalAmount -= action.payload;
     },
+    resetAmount: (state) => {
+      state.totalAmount = 250000;
+    },
+    donateAll: (state) => {
+      state.totalAmount = 0;
+    },
   },
 });
 
 // Action creators, following recommended setup with redux toolkit
-export const { deposit, withdraw } = bankSlice.actions;
+export const { deposit, withdraw, resetAmount } = bankSlice.actions;
 
 export default bankSlice.reducer;

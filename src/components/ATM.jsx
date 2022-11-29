@@ -34,7 +34,6 @@ class ATM extends React.Component {
           <button data-amount="5000" onClick={this.handleWithdraw}>Withdraw from ATM $5,000</button>
         </section>
       </>
-      
     );
   }
 }

@@ -37,7 +37,6 @@ export default class Bank extends React.Component {
       <div className="App">
         <UserProfile username={username} />
         <BalanceDisplay totalAmount={totalAmount} />
-        {/* <ButtonGroup onClick={this.withdrawFromBank}/> */}
         <hr />
         <ATM updateFunds={this.updateFunds} />
         <hr />
