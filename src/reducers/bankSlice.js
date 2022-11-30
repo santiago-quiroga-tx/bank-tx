@@ -23,6 +23,6 @@ export const bankSlice = createSlice({
 });
 
 // Action creators, following recommended setup with redux toolkit
-export const { deposit, withdraw, resetAmount } = bankSlice.actions;
+export const { deposit, withdraw, resetAmount, donateAll } = bankSlice.actions;
 
 export default bankSlice.reducer;

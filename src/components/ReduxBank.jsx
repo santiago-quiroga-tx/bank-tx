@@ -1,20 +1,24 @@
 import React from "react";
 import "../App.css";
-import UserProfile from "./UserProfile";
-import BalanceDisplay from "./BalanceDisplay";
-import ATM from "./ATM";
+import ReduxUserProfile from "./ReduxUserProfile";
+import ReduxBalanceDisplay from "./ReduxBalanceDisplay";
+import ReduxATM from "./ReduxATM";
 import { useSelector, useDispatch } from 'react-redux'
+import { resetAmount, donateAll } from '../reducers/bankSlice';
 
 function ReduxBank() {
+  
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <UserProfile username="Santiago" />
-      <BalanceDisplay totalAmount={250000} />
+      <ReduxUserProfile />
+      <ReduxBalanceDisplay />
       <hr />
-      <ATM updateFunds={this.updateFunds} />
+      <ReduxATM />
       <hr />
-      <p className="App__giveaway" onClick={this.giveAwayToCharity}>Give away all your cash to charity</p>
-      <p className="App__giveaway" onClick={this.resetState}>Reset!</p>
+      <p className="App__giveaway" onClick={() => dispatch(donateAll())}>Give away all your cash to charity</p>
+      <p className="App__giveaway" onClick={() => dispatch(resetAmount())}>Reset!</p>
     </div>
   );
 }
