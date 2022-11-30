@@ -3,31 +3,26 @@ import "../App.css";
 import UserProfile from "./UserProfile";
 import BalanceDisplay from "./BalanceDisplay";
 import ATM from "./ATM";
+import { INITIAL_STATE } from '../constants/shared';
 
-const initialState = {
-  username: "Santiago",
-  totalAmount: 250000
-};
 
 export default class Bank extends React.Component {
-  state = {...initialState};
+  state = {...INITIAL_STATE};
 
   withdrawFromBank = (event) => {
     const amount = event.target.dataset.amount;
-    console.log('withdrawFromBank getting called with', amount);
     this.setState({ totalAmount: this.state.totalAmount - amount });
   }
 
-  giveAwayToCharity = (event) => {
+  giveAwayToCharity = (_) => {
     this.setState({ totalAmount: 0 });
   }
 
-  resetState = (event) => {
-    this.setState(initialState);
+  resetState = (_) => {
+    this.setState(INITIAL_STATE);
   }
 
   updateFunds = (amount) => {
-    console.log('calling update funds on bank!');
     this.setState({ totalAmount: this.state.totalAmount + amount });
   }
 
@@ -38,7 +33,7 @@ export default class Bank extends React.Component {
         <UserProfile username={username} />
         <BalanceDisplay totalAmount={totalAmount} />
         <hr />
-        <ATM updateFunds={this.updateFunds} />
+        <ATM updateFunds={this.updateFunds} bankFunds={this.state.totalAmount}/>
         <hr />
         <p className="App__giveaway" onClick={this.giveAwayToCharity}>Give away all your cash to charity</p>
         <p className="App__giveaway" onClick={this.resetState}>Reset!</p>

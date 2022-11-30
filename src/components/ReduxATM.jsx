@@ -1,25 +1,37 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deposit, withdraw } from '../reducers/bankSlice';
 
 function ReduxATM() {
   const [funds, setFunds] = useState(0);
   
-  const message = `This chashier has ${funds} under its control!`;
+  const message = `This ATM has ${funds} under its control!`;
   const dispatch = useDispatch();
+
+  const bankFunds = useSelector((state) => state.bank.totalAmount);
 
   function handleDeposit (event) {
     const cantidad = parseInt(event.target.dataset.amount);
     const newBalance = funds + cantidad;
-    setFunds(newBalance);
-    dispatch(withdraw(cantidad));
+
+    if (bankFunds < cantidad) {
+      alert("Not enough funds to perform this action");
+    } else {
+      setFunds(newBalance);
+      dispatch(withdraw(cantidad));
+    }
   }
 
   function handleWithdraw (event) {
     const cantidad = parseInt(event.target.dataset.amount);
     const newBalance = funds - cantidad;
-    setFunds(newBalance);
-    dispatch(deposit(cantidad));
+
+    if (newBalance < 0) {
+      alert("Not enough funds to perform this action");
+    } else {
+      setFunds(newBalance);
+      dispatch(deposit(cantidad));
+    }
   }
 
 

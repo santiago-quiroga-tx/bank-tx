@@ -5,26 +5,31 @@ class ATM extends React.Component {
 
   handleDeposit = (event) => {
     const cantidad = parseInt(event.target.dataset.amount);
-    console.log(typeof cantidad);
     const { funds } = this.state;
+    const { bankFunds } = this.props;
     const newBalance = funds + cantidad;
-    console.log(newBalance);
-    this.setState({ funds: newBalance });
-    this.props.updateFunds((cantidad * -1));
+    if (bankFunds < cantidad) {
+      alert("Not enough funds to perform this action");
+    } else {
+      this.setState({ funds: newBalance });
+      this.props.updateFunds((cantidad * -1));
+    }
   }
 
   handleWithdraw = (event) => {
     const cantidad = parseInt(event.target.dataset.amount);
-    console.log(typeof cantidad);
     const { funds } = this.state;
     const newBalance = funds - cantidad;
-    console.log(newBalance);
-    this.setState({ funds: newBalance });
-    this.props.updateFunds(cantidad);
+    if (newBalance < 0) {
+      alert("Not enough funds to perform this action");
+    } else {
+      this.setState({ funds: newBalance });
+      this.props.updateFunds(cantidad);
+    }
   }
 
   render() {
-    const message = `This chashier has ${this.state.funds} under its control!`
+    const message = `This ATM has ${this.state.funds} under its control!`
     return (
       <>
         <p>{message}</p>

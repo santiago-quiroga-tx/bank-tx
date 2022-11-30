@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const bankSlice = createSlice({
   name: 'bank',
   initialState: {
-    username: 'Santiago',
+    username: 'Redux',
     totalAmount: 250000,
   },
   reducers: {

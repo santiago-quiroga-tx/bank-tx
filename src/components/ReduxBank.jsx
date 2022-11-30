@@ -3,7 +3,7 @@ import "../App.css";
 import ReduxUserProfile from "./ReduxUserProfile";
 import ReduxBalanceDisplay from "./ReduxBalanceDisplay";
 import ReduxATM from "./ReduxATM";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { resetAmount, donateAll } from '../reducers/bankSlice';
 
 function ReduxBank() {

@@ -4,8 +4,10 @@ import ReduxBank from "./components/ReduxBank";
 
 
 function App() {
-  // return <Bank />;
-  return <ReduxBank />;
+  return ([
+    <Bank />,
+    <ReduxBank />
+  ]);
 }
 
 export default App;
